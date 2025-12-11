@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
- 
+
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private KeyCode[] moveKeyCodes;
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera playerCamera;
 
     private float rotationCamEnX = 0f;
-    private void Start()
+    private void Awake()
     {
         // garder cursor locked in place
         Cursor.lockState = CursorLockMode.Locked;
@@ -29,10 +30,10 @@ public class PlayerController : MonoBehaviour
     {
         for(int i = 0; i != moveKeyCodes.Length; ++i)
             if (Input.GetKey(moveKeyCodes[i]))
-                Move(moveVelocity * Time.deltaTime * moveDirections[i]);
+                Move(Time.deltaTime * moveVelocity * moveDirections[i]);
     }
     private void Move(Vector3 velocity) =>
-        transform.Translate(velocity, Space.Self);
+        transform.Translate(velocity);
 
     private void CheckMouseRotation()
     {
