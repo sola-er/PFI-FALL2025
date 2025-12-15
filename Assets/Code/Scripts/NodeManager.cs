@@ -48,8 +48,18 @@ public class NodeManager : MonoBehaviour
         return closestNode;
     }
     //testing if all nodes are connected
-    void Testing()
+    private void Testing()
     {
-        Debug.Log(graph.ToString());
+        // Run BFS from node 0
+        var reached = Pathfinding.TraverseBFS(graph, 0);
+
+        int reachedCount = 0;
+        foreach (int node in reached)
+            reachedCount++;
+
+        if (reachedCount == nodes.Count)
+            Debug.Log(":) All nodes are connected!");
+        else
+            Debug.LogWarning($" :( Only {reachedCount}/{nodes.Count} nodes reachable. Some nodes are isolated!");
     }
 }
