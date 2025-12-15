@@ -10,42 +10,78 @@ public class SlendyPathfinder : MonoBehaviour
     [SerializeField] private NodeManager nodeManager;
     [SerializeField] private Transform player;
     [SerializeField] private float closenessThreshold = 0.5f;
-    
+
     private float elapsedTime = 0f;
     private List<int> currentPath;
-    private void Update() 
-    { 
-        if (elapsedTime >= tempsAvantTraitements) 
-        { 
-            Traitements(); 
-            elapsedTime -= tempsAvantTraitements; 
-        } 
+
+    private void Update()
+    {
+        // Run pathfinding every tempsAvantTraitements seconds
+        if (elapsedTime >= tempsAvantTraitements)
+        {
+            Traitements();
+            elapsedTime -= tempsAvantTraitements;
+        }
         elapsedTime += Time.deltaTime;
+
         FollowPath();
     }
+
     private void Traitements()
     {
         int start = nodeManager.FindClosestNode(transform.position);
         int end = nodeManager.FindClosestNode(player.transform.position);
 
         currentPath = new List<int>(Pathfinding.GetPathDijkstra(nodeManager.graph, start, end));
+        Debug.Log($"New path calculated from node {start} to {end}. Path length: {currentPath.Count}");
     }
+
     private void FollowPath()
     {
-        Vector3 target = nodeManager.nodes[currentPath[0]].transform.position;
+        if (currentPath == null || currentPath.Count == 0)
+        {
+            Debug.Log("No path to follow.");
+            return;
+        }
 
-        Vector3 direction = target - transform.position;
+        int nextNodeIndex = currentPath[0];
+        Vector3 target = nodeManager.nodes[nextNodeIndex].transform.position;
 
-        //bouger vers la target
-        transform.Translate(direction.normalized *  speed * Time.deltaTime, Space.World);
+        // Ignore Y axis so Slendy stays on ground
+        Vector3 currentPosXZ = new Vector3(transform.position.x, 0f, transform.position.z);
+        Vector3 targetXZ = new Vector3(target.x, 0f, target.z);
 
-        // si on l'atteint, enlever de la liste
-        if (Vector3.Distance(transform.position, target) < closenessThreshold)
+        Debug.Log($"Slendy Pos: {transform.position} | Next Node Index: {nextNodeIndex} | Target Pos: {target} | Distance (XZ): {Vector3.Distance(currentPosXZ, targetXZ)}");
+
+        // Move toward target (XZ only), keep current Y
+        Vector3 newPos = Vector3.MoveTowards(
+            transform.position,
+            new Vector3(target.x, transform.position.y, target.z),
+            speed * Time.deltaTime
+        );
+        transform.position = newPos;
+
+        // If close enough in XZ plane, remove node
+        if (Vector3.Distance(currentPosXZ, targetXZ) < closenessThreshold)
+        {
+            Debug.Log($"Reached node {nextNodeIndex}, removing from path.");
             currentPath.RemoveAt(0);
+
+            if (currentPath.Count > 0)
+            {
+                Debug.Log($"Next node will be {currentPath[0]} at {nodeManager.nodes[currentPath[0]].transform.position}");
+            }
+            else
+            {
+                Debug.Log("Path finished.");
+            }
+        }
     }
+
     private void OnValidate()
     {
-        Debug.Assert(nodeManager != null);
-        Debug.Assert(player != null);
+        Debug.Assert(nodeManager != null, "NodeManager reference is missing!");
+        Debug.Assert(player != null, "Player reference is missing!");
+        Debug.Log("SlendyPathfinder validated successfully.");
     }
 }
