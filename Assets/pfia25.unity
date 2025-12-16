@@ -570,7 +570,7 @@ MonoBehaviour:
   speed: 3
   nodeManager: {fileID: 1586921802}
   player: {fileID: 536412708}
-  closenessThreshold: 0.5
+  closenessThreshold: 10
 --- !u!1001 &468969185
 PrefabInstance:
   m_ObjectHideFlags: 0
