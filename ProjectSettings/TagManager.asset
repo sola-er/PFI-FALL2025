@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Node
   - House
+  - Orb
   layers:
   - Default
   - TransparentFX

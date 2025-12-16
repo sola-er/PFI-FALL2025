@@ -13,10 +13,11 @@ public class SlendyPathfinder : MonoBehaviour
 
     private float elapsedTime = 0f;
     private List<int> currentPath;
+    private int nextNodeIndex = 0;
 
     private void Update()
     {
-        // pathfinding à chaque seconde (1f)
+        // pathfinding ï¿½ chaque seconde (1f)
         if (elapsedTime >= tempsAvantTraitements)
         {
             Traitements();
@@ -42,7 +43,7 @@ public class SlendyPathfinder : MonoBehaviour
             return;
         }
 
-        int nextNodeIndex = currentPath[0];
+        //int nextNodeIndex = currentPath[0];
         Vector3 target = nodeManager.nodes[nextNodeIndex].transform.position;
 
         // ignore Y so Slendy stays on ground
@@ -55,7 +56,8 @@ public class SlendyPathfinder : MonoBehaviour
         // if close enough to node, remove it
         if (Vector3.Distance(transform.position, targetXZ) < closenessThreshold)
         {
-            currentPath.RemoveAt(0);
+            //currentPath.RemoveAt(0);
+            nextNodeIndex++;
         }
     }
 
