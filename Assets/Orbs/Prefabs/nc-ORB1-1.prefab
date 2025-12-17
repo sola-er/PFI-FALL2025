@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7946360914446471443}
   - component: {fileID: 3027801450814098217}
   - component: {fileID: 5608441684138365875}
+  - component: {fileID: 4005684406006688485}
   m_Layer: 0
   m_Name: nc-ORB1-1
   m_TagString: Orb
@@ -4837,6 +4838,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4005684406006688485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108012326883433976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac901793cbf9d64ba63a30d276b38dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbManager: {fileID: 0}
 --- !u!1 &508546991109900460
 GameObject:
   m_ObjectHideFlags: 0
@@ -9808,7 +9822,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

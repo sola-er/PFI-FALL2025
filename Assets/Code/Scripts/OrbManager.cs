@@ -7,36 +7,41 @@ public class OrbManager : MonoBehaviour
 {
     [SerializeField] private GameObject orbPrefab;
 
-    private List<GameObject> spawnedOrbs = new List<GameObject>();
+    private HashSet<GameObject> spawnedOrbs;
     private List<GameObject> houses;
+    public static int orbAmount = 0;
+    public int RemainingOrbs()
+        => spawnedOrbs.Count;
 
     private void Awake()
     {
         GameObject[] houseObjects = GameObject.FindGameObjectsWithTag("House");
         
         houses = new List<GameObject>(houseObjects);
-        spawnedOrbs = new List<GameObject>();
+        spawnedOrbs = new HashSet<GameObject>();
     }
 
     private void Start()
     {
         for (int i = 0; i < houses.Count; ++i)
-            //if (UnityEngine.Random.Range(0, 100) < 50)
-        {
-            GameObject orb = Instantiate(orbPrefab, houses[i].transform.position + new Vector3(6, 0, 6), Quaternion.identity);
-            
-            spawnedOrbs.Add(orb);
-        }
+            if (UnityEngine.Random.Range(0, 100) < 50)
+            {
+                GameObject orb = Instantiate(orbPrefab, houses[i].transform.position + new Vector3(6, 0, 6), Quaternion.identity);
+                spawnedOrbs.Add(orb);
+                ++orbAmount;
+            }
     }
 
     public void Collect(GameObject orb)
     {
         if (spawnedOrbs.Contains(orb))
         {
-            Debug.Log(orb.name + " is already spawned");
-            Destroy(orb);
-            Debug.Log("orb destroyed");
-            //spawnedOrbs.Remove(orb);
+            //Debug.Log(orb.name + " is already spawned");
+
+            //Destroy(orb);
+            //Debug.Log("orb destroyed");
+            spawnedOrbs.Remove(orb);
+            --orbAmount;
         }
     }
 
@@ -44,7 +49,4 @@ public class OrbManager : MonoBehaviour
     {
         Debug.Assert(orbPrefab != null);
     }
-    
-    public int RemainingOrbs()
-        => spawnedOrbs.Count;
 }

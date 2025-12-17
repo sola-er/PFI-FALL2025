@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private KeyCode[] moveKeyCodes;
@@ -48,17 +47,7 @@ public class PlayerController : MonoBehaviour
         // for vertical: only camera looks around
         rotationCamEnX -= mouseY;
         // clamp
-        //rotationCamEnX = Mathf.Clamp(rotationCamEnX, -90f, 90f);
+        rotationCamEnX = Mathf.Clamp(rotationCamEnX, -90f, 90f);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationCamEnX, 0f, 0f);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Orb"))
-        {
-            Debug.Log("You hit orb");
-            orbManager.Collect(collision.gameObject);
-        }
-            
     }
 }
