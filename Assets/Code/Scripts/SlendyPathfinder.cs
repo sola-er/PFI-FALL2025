@@ -33,6 +33,7 @@ public class SlendyPathfinder : MonoBehaviour
         int end = nodeManager.FindClosestNode(player.transform.position);
 
         currentPath = new List<int>(Pathfinding.GetPathDijkstra(nodeManager.graph, start, end));
+        nextNodeIndex = 0;
         Debug.Log($"New path: from node {start} to {end}. Path length is {currentPath.Count}");
     }
     private void FollowPath()

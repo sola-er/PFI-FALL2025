@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class OrbPickup : MonoBehaviour
 {
-    [SerializeField] private OrbManager orbManager;
+    private OrbManager orbManager;
+    private void Awake()
+    {
+        orbManager = FindFirstObjectByType<OrbManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
@@ -10,9 +14,5 @@ public class OrbPickup : MonoBehaviour
             Destroy(gameObject);
             orbManager.Collect(gameObject);
         }
-    }
-    private void OnValidate()
-    {
-        Debug.Assert(orbManager != null);
     }
 }

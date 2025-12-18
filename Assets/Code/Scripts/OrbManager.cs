@@ -6,12 +6,11 @@ using static System.Random;
 public class OrbManager : MonoBehaviour
 {
     [SerializeField] private GameObject orbPrefab;
+    [SerializeField] private int spawnRatePercentage = 50;
 
     private HashSet<GameObject> spawnedOrbs;
     private List<GameObject> houses;
-    public static int orbAmount = 0;
-    public int RemainingOrbs()
-        => spawnedOrbs.Count;
+    public int orbAmount = 0;
 
     private void Awake()
     {
@@ -24,7 +23,7 @@ public class OrbManager : MonoBehaviour
     private void Start()
     {
         for (int i = 0; i < houses.Count; ++i)
-            if (UnityEngine.Random.Range(0, 100) < 50)
+            if (UnityEngine.Random.Range(0, 100) < spawnRatePercentage)
             {
                 GameObject orb = Instantiate(orbPrefab, houses[i].transform.position + new Vector3(6, 0, 6), Quaternion.identity);
                 spawnedOrbs.Add(orb);
@@ -34,14 +33,11 @@ public class OrbManager : MonoBehaviour
 
     public void Collect(GameObject orb)
     {
-        if (spawnedOrbs.Contains(orb))
+        if (spawnedOrbs.Remove(orb))
         {
-            //Debug.Log(orb.name + " is already spawned");
-
-            //Destroy(orb);
-            //Debug.Log("orb destroyed");
-            spawnedOrbs.Remove(orb);
             --orbAmount;
+            //Destroy(orb);
+
         }
     }
 

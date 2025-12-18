@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveVelocity = 5f;
     [SerializeField] private float mouseSensitivity = 2f;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private OrbManager orbManager;
 
     private float rotationCamEnX = 0f;
     private void Awake()
@@ -20,7 +19,6 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Assert(moveKeyCodes.Length == moveDirections.Length);
         Debug.Assert(playerCamera != null);
-        Debug.Assert(orbManager != null);
     }
     private void Update()
     {
