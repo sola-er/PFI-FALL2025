@@ -22,8 +22,13 @@ public class OrbManager : MonoBehaviour
 
     private void Start()
     {
+        InitializeOrbs();
+    }
+
+    private void InitializeOrbs()
+    {
         for (int i = 0; i < houses.Count; ++i)
-            if (UnityEngine.Random.Range(0, 100) < spawnRatePercentage)
+            if (UnityEngine.Random.Range(0, 100) < spawnRatePercentage && orbAmount != 1)
             {
                 GameObject orb = Instantiate(orbPrefab, houses[i].transform.position, Quaternion.identity);
                 spawnedOrbs.Add(orb);
@@ -35,16 +40,25 @@ public class OrbManager : MonoBehaviour
     {
         if (spawnedOrbs.Remove(orb))
         {
-            --orbAmount;
-            Destroy(orb);
-
+            ProcessCollectedOrb(orb);
+            CheckForWin();
         }
+    }
+
+    private void CheckForWin()
+    {
+        if (orbAmount == 0)
+            FindFirstObjectByType<WinlLoseManager>().WinChecker(true);
+    }
+
+    private void ProcessCollectedOrb(GameObject orb)
+    {
+        --orbAmount;
+        Destroy(orb);
     }
 
     private void OnValidate()
     {
         Debug.Assert(orbPrefab != null);
-        if(orbAmount == 0)
-            FindFirstObjectByType<WinlLoseManager>().WinChecker(true);
     }
 }
