@@ -509,7 +509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4061999138098054953, guid: c0ec2cd63f93487d92d6623d393c83ba, type: 3}
       propertyPath: m_Name
-      value: Slender
+      value: Slendy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -570,7 +570,8 @@ MonoBehaviour:
   speed: 3
   nodeManager: {fileID: 1586921802}
   player: {fileID: 536412708}
-  closenessThreshold: 10
+  closenessThresholdNode: 0.5
+  closenessThresholdPlayer: 100
 --- !u!1001 &468969185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,7 +744,7 @@ Transform:
   m_GameObject: {fileID: 536412704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.9, y: 13.445654, z: 26}
+  m_LocalPosition: {x: 161, y: 13.445654, z: 199.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

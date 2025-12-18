@@ -9,7 +9,8 @@ public class SlendyPathfinder : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private NodeManager nodeManager;
     [SerializeField] private Transform player;
-    [SerializeField] private float closenessThreshold = 0.5f;
+    [SerializeField] private float closenessThresholdNode = 0.5f;
+    [SerializeField] private float closenessThresholdPlayer = 100f;
 
     private float elapsedTime = 0f;
     private List<int> currentPath;
@@ -26,6 +27,9 @@ public class SlendyPathfinder : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
         FollowPath();
+        
+        if (Vector3.Distance(transform.position, player.transform.position) <= closenessThresholdPlayer)
+            FollowPlayer();
     }
     private void Traitements()
     {
@@ -35,6 +39,17 @@ public class SlendyPathfinder : MonoBehaviour
         currentPath = new List<int>(Pathfinding.GetPathDijkstra(nodeManager.graph, start, end));
         nextNodeIndex = 0;
         Debug.Log($"New path: from node {start} to {end}. Path length is {currentPath.Count}");
+
+        //if (Vector3.Distance(transform.position, player.transform.position) <= closenessThresholdPlayer)
+            //FollowPlayer();
+    }
+
+    private void FollowPlayer()
+    {
+        Vector3 target = new Vector3(player.position.x, 
+            transform.position.y, // reste sur axe des y so he doesnt tweak tf out
+            player.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
     private void FollowPath()
     {
@@ -55,16 +70,15 @@ public class SlendyPathfinder : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetXZ, speed * Time.deltaTime);
 
         // if close enough to node, remove it
-        if (Vector3.Distance(transform.position, targetXZ) < closenessThreshold)
+        if (Vector3.Distance(transform.position, targetXZ) < closenessThresholdNode)
         {
             //currentPath.RemoveAt(0);
             nextNodeIndex++;
         }
     }
-
     private void OnValidate()
     {
         Debug.Assert(nodeManager != null, "NodeManager reference is missing");
         Debug.Assert(player != null, "Player reference missing");
     }
-}
+} 

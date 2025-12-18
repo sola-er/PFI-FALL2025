@@ -25,7 +25,7 @@ public class OrbManager : MonoBehaviour
         for (int i = 0; i < houses.Count; ++i)
             if (UnityEngine.Random.Range(0, 100) < spawnRatePercentage)
             {
-                GameObject orb = Instantiate(orbPrefab, houses[i].transform.position + new Vector3(6, 0, 6), Quaternion.identity);
+                GameObject orb = Instantiate(orbPrefab, houses[i].transform.position, Quaternion.identity);
                 spawnedOrbs.Add(orb);
                 ++orbAmount;
             }

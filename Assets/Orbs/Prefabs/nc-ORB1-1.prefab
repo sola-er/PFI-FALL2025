@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5608441684138365875}
   - component: {fileID: 4005684406006688485}
   - component: {fileID: 5675419028243917599}
+  - component: {fileID: 6859045659465083508}
   m_Layer: 0
   m_Name: nc-ORB1-1
   m_TagString: Orb
@@ -4872,6 +4873,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: -2.5, y: 0.8, z: 0}
+--- !u!114 &6859045659465083508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108012326883433976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4217042a5ab5b4dcb883c0d00a827cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.5
+  frequency: 0.5
+  direction: {x: 0, y: 1, z: 0}
+  space: 1
 --- !u!1 &508546991109900460
 GameObject:
   m_ObjectHideFlags: 0
