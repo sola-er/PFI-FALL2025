@@ -44,5 +44,7 @@ public class OrbManager : MonoBehaviour
     private void OnValidate()
     {
         Debug.Assert(orbPrefab != null);
+        if(orbAmount == 0)
+            FindFirstObjectByType<WinlLoseManager>().WinChecker(true);
     }
 }
