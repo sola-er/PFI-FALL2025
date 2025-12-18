@@ -36,7 +36,7 @@ public class OrbManager : MonoBehaviour
         if (spawnedOrbs.Remove(orb))
         {
             --orbAmount;
-            //Destroy(orb);
+            Destroy(orb);
 
         }
     }
