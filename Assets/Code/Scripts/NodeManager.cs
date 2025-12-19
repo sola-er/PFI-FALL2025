@@ -12,6 +12,10 @@ public class NodeManager : MonoBehaviour
 
     private void Awake()
     {
+        InitialiserGraph();
+    }
+    private void InitialiserGraph()
+    {
         GameObject[] nodeObjects = GameObject.FindGameObjectsWithTag("Node");
         nodes = new List<GameObject>(nodeObjects);
         graph = new AdjacencyList(nodes.Count);
@@ -21,15 +25,15 @@ public class NodeManager : MonoBehaviour
             for (int j = i + 1; j != nodes.Count; ++j)
             {
                 float distance = Vector3.Distance(nodes[i].transform.position, nodes[j].transform.position);
-                if(distance < maxDistanceForConnection)
+                if (distance < maxDistanceForConnection)
                 {
                     graph.AddEdge(i, j, (int)distance);
                     graph.AddEdge(j, i, (int)distance);
                 }
             }
         }
-        Testing();
     }
+
     // for future use by slendy/player: send current position, get closest node to it.
     public int FindClosestNode(Vector3 pos)
     {
@@ -48,18 +52,18 @@ public class NodeManager : MonoBehaviour
         return closestNode;
     }
     //testing if all nodes are connected
-    private void Testing()
-    {
-        // Run BFS from node 0
-        var reached = Pathfinding.TraverseBFS(graph, 0);
+    //private void Testing()
+    //{
+    //    // Run BFS from node 0
+    //    var reached = Pathfinding.TraverseBFS(graph, 0);
 
-        int reachedCount = 0;
-        foreach (int node in reached)
-            reachedCount++;
+    //    int reachedCount = 0;
+    //    foreach (int node in reached)
+    //        reachedCount++;
 
-        if (reachedCount == nodes.Count)
-            Debug.Log(":) All nodes are connected!");
-        else
-            Debug.LogWarning($" :( Only {reachedCount}/{nodes.Count} nodes reachable. Some nodes are isolated!");
-    }
+    //    if (reachedCount == nodes.Count)
+    //        Debug.Log(":) All nodes are connected!");
+    //    else
+    //        Debug.LogWarning($" :( Only {reachedCount}/{nodes.Count} nodes reachable. Some nodes are isolated!");
+    //}
 }

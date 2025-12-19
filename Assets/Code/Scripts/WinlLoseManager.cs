@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class WinlLoseManager : MonoBehaviour
 {
     [SerializeField] private GameObject winScreen;
-    [SerializeField] private GameObject lossScreen; // | || || |_
+    [SerializeField] private GameObject lossScreen; /* | || || |_ */
     public void WinChecker(bool win)
     {
         if (win)
