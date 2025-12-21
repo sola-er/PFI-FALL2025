@@ -11,4 +11,3 @@ public class NodeGizmo : MonoBehaviour
         Gizmos.DrawSphere(transform.position, radius);
     }
 }
-

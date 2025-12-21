@@ -14,7 +14,7 @@ public class OrbPickup : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            slendy.ApplyOrbForce(orbForce);
+            //slendy.ApplyOrbForce(orbForce);
             Destroy(gameObject);
             orbManager.Collect(gameObject);
         }
