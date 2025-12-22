@@ -12,14 +12,17 @@ public class NodeManager : MonoBehaviour
 
     private void Awake()
     {
-        InitialiserGraph();
+        InitializeGraph();
     }
-    private void InitialiserGraph()
+    private void InitializeGraph()
     {
+        //find all nodes in scene, put them in a list and create graph the size of that list
         GameObject[] nodeObjects = GameObject.FindGameObjectsWithTag("Node");
         nodes = new List<GameObject>(nodeObjects);
         graph = new AdjacencyList(nodes.Count);
 
+        // for each node, check distance to every other node. if close enough, create edge between them
+        // O(n^2), but at this scale it works
         for (int i = 0; i != nodes.Count; ++i)
         {
             for (int j = i + 1; j != nodes.Count; ++j)
@@ -34,36 +37,21 @@ public class NodeManager : MonoBehaviour
         }
     }
 
-    // for future use by slendy/player: send current position, get closest node to it.
+    // for future use by pathfinding: send current position, get closest node to it.
     public int FindClosestNode(Vector3 pos)
     {
         int closestNode = 0;
-        float distance = float.MaxValue; // just so its rlly far away yk
+        float closestDistance = float.MaxValue; // just so its rlly far away and we're sure to find something closer
 
         for (int i = 0; i != nodes.Count; ++i)
         {
             float currentDistance = Vector3.Distance(pos, nodes[i].transform.position);
-            if (currentDistance < distance)
+            if (currentDistance < closestDistance)
             {
                 closestNode = i;
-                distance = currentDistance;
+                closestDistance = currentDistance;
             }
         }
         return closestNode;
     }
-    //testing if all nodes are connected
-    //private void Testing()
-    //{
-    //    // Run BFS from node 0
-    //    var reached = Pathfinding.TraverseBFS(graph, 0);
-
-    //    int reachedCount = 0;
-    //    foreach (int node in reached)
-    //        reachedCount++;
-
-    //    if (reachedCount == nodes.Count)
-    //        Debug.Log(":) All nodes are connected!");
-    //    else
-    //        Debug.LogWarning($" :( Only {reachedCount}/{nodes.Count} nodes reachable. Some nodes are isolated!");
-    //}
 }

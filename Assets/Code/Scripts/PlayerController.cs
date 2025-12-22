@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 2f;
     [SerializeField] private Camera playerCamera;
 
-    private float rotationCamEnX = 0f;
-    private Vector3 moveInputVelocity;
+    private float camRotation = 0f;
+    private Vector3 inputDirection;
     Rigidbody rb;
     private void Awake()
     {
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         Debug.Assert(moveKeyCodes.Length == moveDirections.Length);
         Debug.Assert(playerCamera != null);
     }
+    //only the physics movement in FixedUpdate
     private void FixedUpdate()
     {
         Move();
@@ -35,15 +36,16 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckMoveInput()
     {
-        moveInputVelocity = Vector3.zero;
+        inputDirection = Vector3.zero;
         for (int i = 0; i != moveKeyCodes.Length; ++i)
             if (Input.GetKey(moveKeyCodes[i]))
-                moveInputVelocity += moveDirections[i];
+                inputDirection += moveDirections[i];
     }
     private void Move()
     {
-        Vector3 worldVelocity = transform.TransformDirection(moveInputVelocity);
-        rb.linearVelocity = worldVelocity * speed;
+        // transform local direction to world direction to move correctly
+        Vector3 worldVelocity = transform.TransformDirection(inputDirection);
+        rb.linearVelocity = worldVelocity.normalized * speed;
     }
     private void CheckMouseRotation()
     {
@@ -55,10 +57,10 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
         
         // for vertical: only camera looks around
-        rotationCamEnX -= mouseY;
-        // clamp
-        rotationCamEnX = Mathf.Clamp(rotationCamEnX, -90f, 90f);
-        playerCamera.transform.localRotation = Quaternion.Euler(rotationCamEnX, 0f, 0f);
+        camRotation -= mouseY;
+
+        camRotation = Mathf.Clamp(camRotation, -90f, 90f);
+        playerCamera.transform.localRotation = Quaternion.Euler(camRotation, 0f, 0f);
     }
     
 }
