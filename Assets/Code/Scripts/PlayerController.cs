@@ -24,10 +24,13 @@ public class PlayerController : MonoBehaviour
         Debug.Assert(moveKeyCodes.Length == moveDirections.Length);
         Debug.Assert(playerCamera != null);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         CheckMoveInput();
         Move();
+    }
+    private void Update()
+    {
         CheckMouseRotation();
     }
     private void CheckMoveInput()
