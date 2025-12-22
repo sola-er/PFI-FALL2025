@@ -6,18 +6,20 @@ using static System.Random;
 public class OrbManager : MonoBehaviour
 {
     [SerializeField] private GameObject orbPrefab;
-    [SerializeField] private int spawnRatePercentage = 50;
+    [SerializeField] private int spawnRatePercentage = 101;
+    [SerializeField] private float orbPushbackForce = 10f;
 
     private HashSet<GameObject> spawnedOrbs;
     private List<GameObject> houses;
     public int orbAmount = 0;
-
+    private SlendyActions slendyActions;
     private void Awake()
     {
         GameObject[] houseObjects = GameObject.FindGameObjectsWithTag("House");
-        
         houses = new List<GameObject>(houseObjects);
         spawnedOrbs = new HashSet<GameObject>();
+
+        slendyActions = FindFirstObjectByType<SlendyActions>();
     }
 
     private void Start()
@@ -42,15 +44,14 @@ public class OrbManager : MonoBehaviour
         {
             ProcessCollectedOrb(orb);
             CheckForWin();
+            slendyActions.ApplyOrbForce(orbPushbackForce);
         }
     }
-
     private void CheckForWin()
     {
         if (orbAmount == 0)
             FindFirstObjectByType<WinlLoseManager>().WinChecker(true);
     }
-
     private void ProcessCollectedOrb(GameObject orb)
     {
         --orbAmount;

@@ -41,16 +41,6 @@ public class SlendyPathfinder : MonoBehaviour
         else
             FollowPath();
     }
-    
-    public void ApplyOrbForce(float forceMagnitude)
-    {
-        Vector3 direction = player.position - transform.position;
-        Vector3 force = -direction.normalized * forceMagnitude;
-        rb.AddForce(force, ForceMode.Impulse); // ForceMode.Force est une force continue 
-        // which i dont think we want? impulse will apply it like .. yk an impulse then its over 
-        // and repeats
-    }
-
     private bool IsCloseEnoughToPlayer()
     {
         return Vector3.Distance(transform.position, player.transform.position) <= closenessThresholdPlayer;
