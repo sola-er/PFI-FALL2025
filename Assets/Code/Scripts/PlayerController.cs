@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private KeyCode[] moveKeyCodes;
     [SerializeField] private Vector3[] moveDirections;
-    [SerializeField] private float moveVelocity = 5f;
+    [SerializeField] private float speed = 5f;
     [SerializeField] private float mouseSensitivity = 2f;
     [SerializeField] private Camera playerCamera;
 
@@ -26,11 +26,11 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CheckMoveInput();
         Move();
     }
     private void Update()
     {
+        CheckMoveInput();
         CheckMouseRotation();
     }
     private void CheckMoveInput()
@@ -40,8 +40,11 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(moveKeyCodes[i]))
                 moveInputVelocity += moveDirections[i];
     }
-    private void Move() =>
-        rb.linearVelocity = moveInputVelocity;
+    private void Move()
+    {
+        Vector3 worldVelocity = transform.TransformDirection(moveInputVelocity);
+        rb.linearVelocity = worldVelocity * speed;
+    }
     private void CheckMouseRotation()
     {
         // get the relevant axis for mouse rotation

@@ -1770,7 +1770,7 @@ Transform:
   m_GameObject: {fileID: 536412704}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.8958577, z: -0, w: 0.44434118}
-  m_LocalPosition: {x: 84.991, y: 7.589, z: 29.92}
+  m_LocalPosition: {x: 21, y: 4.21, z: 29.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1795,7 +1795,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0}
   - {x: 0, y: 0, z: -1}
   - {x: 1, y: 0, z: 0}
-  moveVelocity: 5
+  speed: 5
   mouseSensitivity: 4
   playerCamera: {fileID: 729242742}
 --- !u!54 &536412710
