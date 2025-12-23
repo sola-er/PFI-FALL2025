@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 326955891}
   - component: {fileID: 326955890}
   - component: {fileID: 326955889}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -1837,7 +1837,7 @@ GameObject:
   - component: {fileID: 549054199}
   - component: {fileID: 549054198}
   - component: {fileID: 549054197}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (6)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -2048,7 +2048,7 @@ GameObject:
   - component: {fileID: 612709589}
   - component: {fileID: 612709588}
   - component: {fileID: 612709587}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (11)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -2269,7 +2269,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 503
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2479,7 +2479,7 @@ GameObject:
   - component: {fileID: 774485615}
   - component: {fileID: 774485614}
   - component: {fileID: 774485613}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (2)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -2774,19 +2774,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fb4b189d2629f3341a839074d8cff2da, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.89552927
+      value: 0.8954746
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fb4b189d2629f3341a839074d8cff2da, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.004919062
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fb4b189d2629f3341a839074d8cff2da, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.4450026
+      value: -0.44497547
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fb4b189d2629f3341a839074d8cff2da, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.009899184
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fb4b189d2629f3341a839074d8cff2da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2798,7 +2798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fb4b189d2629f3341a839074d8cff2da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 1.267
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3194,7 +3194,7 @@ GameObject:
   - component: {fileID: 941588729}
   - component: {fileID: 941588728}
   - component: {fileID: 941588727}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (5)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -3302,7 +3302,7 @@ GameObject:
   - component: {fileID: 956616754}
   - component: {fileID: 956616753}
   - component: {fileID: 956616752}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (13)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -3410,7 +3410,7 @@ GameObject:
   - component: {fileID: 975953572}
   - component: {fileID: 975953571}
   - component: {fileID: 975953570}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (4)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -3621,7 +3621,7 @@ GameObject:
   - component: {fileID: 1056279803}
   - component: {fileID: 1056279802}
   - component: {fileID: 1056279801}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (18)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -3729,7 +3729,7 @@ GameObject:
   - component: {fileID: 1103650531}
   - component: {fileID: 1103650530}
   - component: {fileID: 1103650529}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (3)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -3837,7 +3837,7 @@ GameObject:
   - component: {fileID: 1174542743}
   - component: {fileID: 1174542742}
   - component: {fileID: 1174542741}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (10)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -4273,7 +4273,7 @@ GameObject:
   - component: {fileID: 1373531518}
   - component: {fileID: 1373531517}
   - component: {fileID: 1373531516}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (12)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -4457,7 +4457,7 @@ GameObject:
   - component: {fileID: 1455943412}
   - component: {fileID: 1455943411}
   - component: {fileID: 1455943410}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerFollower
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -4578,7 +4578,7 @@ GameObject:
   - component: {fileID: 1472213606}
   - component: {fileID: 1472213605}
   - component: {fileID: 1472213604}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (17)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -4686,7 +4686,7 @@ GameObject:
   - component: {fileID: 1503143137}
   - component: {fileID: 1503143136}
   - component: {fileID: 1503143135}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (9)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -5430,7 +5430,7 @@ GameObject:
   - component: {fileID: 1743906944}
   - component: {fileID: 1743906943}
   - component: {fileID: 1743906942}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (16)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -5812,7 +5812,7 @@ GameObject:
   - component: {fileID: 1786090359}
   - component: {fileID: 1786090358}
   - component: {fileID: 1786090357}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (1)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -5917,9 +5917,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1811484591}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Nodes
-  m_TagString: Untagged
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5971,7 +5971,7 @@ GameObject:
   - component: {fileID: 1811646296}
   - component: {fileID: 1811646295}
   - component: {fileID: 1811646299}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SlendyFollower
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -6092,7 +6092,7 @@ GameObject:
   - component: {fileID: 1870773410}
   - component: {fileID: 1870773409}
   - component: {fileID: 1870773408}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (14)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -6200,7 +6200,7 @@ GameObject:
   - component: {fileID: 1990305593}
   - component: {fileID: 1990305592}
   - component: {fileID: 1990305591}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (7)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -6308,7 +6308,7 @@ GameObject:
   - component: {fileID: 2072983341}
   - component: {fileID: 2072983340}
   - component: {fileID: 2072983339}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (8)
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -6416,7 +6416,7 @@ GameObject:
   - component: {fileID: 2105611761}
   - component: {fileID: 2105611760}
   - component: {fileID: 2105611759}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node (15)
   m_TagString: Node
   m_Icon: {fileID: 0}
