@@ -5,7 +5,7 @@ public class WinlLoseManager : MonoBehaviour
 {
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject lossScreen; /* | || || |_ */
-    public void WinChecker(bool win)
+    public void CheckWinCondition(bool win) // true = win, false = loss
     {
         if (win)
         {
@@ -14,7 +14,7 @@ public class WinlLoseManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("u lost. ur such a fat fucking chud");
+            Debug.Log("u lost. do better :(");
             lossScreen.SetActive(true);
         }
     }

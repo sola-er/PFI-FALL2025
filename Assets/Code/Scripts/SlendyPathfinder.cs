@@ -10,8 +10,8 @@ public class SlendyPathfinder : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private NodeManager nodeManager;
     [SerializeField] private Transform player;
-    [SerializeField] private float closenessThresholdNode = 0.5f;
-    [SerializeField] private float closenessThresholdPlayer = 100f;
+    [SerializeField] private float closenessThresholdNode = 0.5f; // how close to a node before going to the next
+    [SerializeField] private float closenessThresholdPlayer = 60f; // how close to player before abandoning pathfinding
 
     private Rigidbody rb;
     private float elapsedTime = 0f;
@@ -25,15 +25,15 @@ public class SlendyPathfinder : MonoBehaviour
     }
     private void OnValidate()
     {
-        Debug.Assert(nodeManager != null, "NodeManager reference is missing");
-        Debug.Assert(player != null, "Player reference missing");
+        Debug.Assert(nodeManager != null);
+        Debug.Assert(player != null);
     }
 
     private void Update()
     {
-        // pathfinding à chaque seconde (1f)
         CheckForTreatment();
     }
+    // treatment in update and actual physics-based movement in fixedupdate
     private void FixedUpdate()
     {
         if (IsCloseEnoughToPlayer())
@@ -41,13 +41,11 @@ public class SlendyPathfinder : MonoBehaviour
         else
             FollowPath();
     }
-    private bool IsCloseEnoughToPlayer()
-    {
-        return Vector3.Distance(transform.position, player.transform.position) <= closenessThresholdPlayer;
-    }
-
+    private bool IsCloseEnoughToPlayer() =>
+        Vector3.Distance(transform.position, player.transform.position) <= closenessThresholdPlayer;
     private void CheckForTreatment()
     {
+        // only recalculate path every tempsAvantTraitements seconds
         if (elapsedTime >= tempsAvantTraitements)
         {
             FindPath();
@@ -62,7 +60,7 @@ public class SlendyPathfinder : MonoBehaviour
         int start = nodeManager.FindClosestNode(transform.position);
         int end = nodeManager.FindClosestNode(player.transform.position);
 
-        //if theyre the same as before, no need to find a new path
+        // if theyre the same as before, no need to find a new path
         if (lastStart == start && lastEnd == end)
             return;
 
@@ -72,13 +70,12 @@ public class SlendyPathfinder : MonoBehaviour
         currentPath = new List<int>(Pathfinding.GetPathDijkstra(nodeManager.graph, start, end));
         nextNodeIndex = 0;
 
-        Debug.Log($"New path: from node {start} to {end}. Path length is {currentPath.Count}");
     }
 
     private void FollowPlayer()
     {
         Vector3 target = new Vector3(player.position.x, 
-            transform.position.y, // reste sur son axe des y so he doesnt tweak tf out
+            transform.position.y, // stay at the same elevation
             player.position.z);
         rb.MovePosition(Vector3.MoveTowards(transform.position, target, speed * Time.fixedDeltaTime));
     }
@@ -89,7 +86,7 @@ public class SlendyPathfinder : MonoBehaviour
             Debug.Log("No path");
             return;
         }
-
+        
         int nodeId = currentPath[nextNodeIndex];
         Vector3 target = nodeManager.nodes[nodeId].transform.position;
 
